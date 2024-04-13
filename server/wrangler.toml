@@ -1,0 +1,6 @@
+name = "blogging-app"
+compatibility_date = "2023-12-01"
+
+[vars]
+DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiMmNiNzI2NzAtYmExYS00OTlkLTg3ODYtYWVmM2Q2YWMxM2I0IiwidGVuYW50X2lkIjoiOTAzMWIyMTdlODE3ZWJjZjZhOWQzMzY5ODliYjcwMjVlYTQ1NTJmMTgyNTliNzdhYTBmYWU0ZGJiZjk3YTc4NyIsImludGVybmFsX3NlY3JldCI6IjgzZjg5MTJhLTZmZjUtNDk1MS05OGUzLTczM2I0MzNlOGRhOCJ9.1UPqPI7jxC_uZmTqPzSx8v6-zXsyMzxhkh_1KAsfBrE"
+JWT_SECRET = "cosmos"
