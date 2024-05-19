@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
-import { createBlogInput, updateBlogInput } from "@saketranjan/commonblogapp";
+import { createBlogInput, updateBlogInput } from "@saketranjan/commonblog-app";
 import { Hono } from "hono";
 import { verify } from "hono/jwt";
 
@@ -53,11 +53,12 @@ blogRoute.post("/", async (c) => {
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const blog = await prisma.blog.create({
+  const blog = await prisma.post.create({
     data: {
       title: body.title,
       content: body.content,
-      authorId: authorId,
+      authorId: Number(authorId),
+      author: body.name
     },
   });
 
@@ -81,7 +82,7 @@ blogRoute.put("/", async (c) => {
     });
   }
 
-  const blog = await prisma.blog.update({
+  const blog = await prisma.post.update({
     where: {
       id: body.id,
     },
@@ -96,17 +97,31 @@ blogRoute.put("/", async (c) => {
   });
 });
 
-blogRoute.get("/", async (c) => {
-  const body = await c.req.json();
+blogRoute.get("/bulk", async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
 
+  const blogs = await prisma.post.findMany();
+
+  return c.json({
+    blogs,
+  });
+});
+
+blogRoute.get("/:id", async (c) => {
+  //const body = await c.req.json();
+  // YOU SHOULD NOT USE BODY IN GET REQUEST. WHY? WILL KNOW WHILE CONNECTING FE AND BE
+  const id = c.req.param("id")
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
 
   try {
-    const blog = await prisma.blog.findFirst({
+    const blog = await prisma.post.findFirst({
       where: {
-        id: body.id,
+        //id: body.id,
+        id: Number(id)
       },
     });
 
@@ -119,18 +134,6 @@ blogRoute.get("/", async (c) => {
       error: "error while fetching blog",
     });
   }
-});
-
-blogRoute.get("/bulk", async (c) => {
-  const prisma = new PrismaClient({
-    datasourceUrl: c.env.DATABASE_URL,
-  }).$extends(withAccelerate());
-
-  const blogs = await prisma.blog.findMany();
-
-  return c.json({
-    blogs,
-  });
 });
 
 export default blogRoute;

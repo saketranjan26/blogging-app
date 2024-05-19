@@ -1,5 +1,5 @@
 import z from "zod";
-export declare const singupInput: z.ZodObject<{
+export declare const signupInput: z.ZodObject<{
     username: z.ZodString;
     password: z.ZodString;
     name: z.ZodOptional<z.ZodString>;
@@ -45,4 +45,4 @@ export declare const updateBlogInput: z.ZodObject<{
 export type UpdateBlogpInput = z.infer<typeof updateBlogInput>;
 export type CreateBlogInput = z.infer<typeof createBlogInput>;
 export type SigninInput = z.infer<typeof signinInput>;
-export type SignupInput = z.infer<typeof singupInput>;
+export type SignupInput = z.infer<typeof signupInput>;

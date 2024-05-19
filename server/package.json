@@ -7,9 +7,11 @@
     "@prisma/client": "^5.12.1",
     "@prisma/extension-accelerate": "^1.0.0",
     "@saketranjan/common": "^1.0.0",
+    "@saketranjan/commonblog-app": "^1.0.0",
     "@saketranjan/commonblogapp": "^1.0.0",
+    "cors": "^2.8.5",
     "hono": "^4.2.3",
-    "prisma": "^5.12.1"
+    "prisma": "^5.14.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240403.0",
