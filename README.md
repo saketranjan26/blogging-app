@@ -1,7 +1,7 @@
 # Blogging Web-App
- Designed and developed full stack blogging web application in which users can log in, sign up, post, and read posted blogs.
+ Designed and developed a full-stack blogging web application where users can log in, sign up, post, and read posted blogs.
 
-## Technlogies
+## Technologies
 
 - Serverless backend-Cloudfare
 - TypeScript
